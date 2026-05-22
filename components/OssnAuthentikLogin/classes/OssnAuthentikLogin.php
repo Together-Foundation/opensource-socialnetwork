@@ -14,8 +14,7 @@ class OssnAuthentikLogin {
     /** JWKS cached on disk so each login doesn't trigger an outbound fetch. */
     const JWKS_TTL_SECONDS = 3600;
 
-    /** Asymmetric algorithms only — prevents alg-confusion if JWKS ever publishes a symmetric key. */
-    private static $allowed_algs = array('RS256', 'RS384', 'RS512', 'ES256', 'ES384', 'EdDSA');
+    private static $allowed_algs = array('RS256', 'RS384', 'RS512');
 
     private function issuer() {
         return rtrim(ossn_authentik_login_settings('issuer'), '/');
