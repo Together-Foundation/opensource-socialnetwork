@@ -200,19 +200,11 @@ class OssnAuthentikLogin {
     }
 
     private function loadJwtLibrary() {
-        $base = OssnAuthentikLogin . 'vendor/firebase/php-jwt/src/';
-        if (!is_file($base . 'JWT.php')) {
-            throw new RuntimeException(
-                'firebase/php-jwt not installed — run components/OssnAuthentikLogin/vendor/install-jwt.sh'
-            );
+        $autoload = ossn_route()->www . 'vendors/jwt/autoload.php';
+        if (!is_file($autoload)) {
+            throw new RuntimeException('OSSN core firebase/php-jwt not found at vendors/jwt/');
         }
-        require_once $base . 'JWTExceptionWithPayloadInterface.php';
-        require_once $base . 'BeforeValidException.php';
-        require_once $base . 'ExpiredException.php';
-        require_once $base . 'SignatureInvalidException.php';
-        require_once $base . 'Key.php';
-        require_once $base . 'JWT.php';
-        require_once $base . 'JWK.php';
+        require_once $autoload;
     }
 
     /**
